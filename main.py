@@ -10,13 +10,13 @@ def main():
 # =============================================================================
 #     checkGameOver()
 # =============================================================================
-    playGame()
+#     playGame()
 # =============================================================================
 #     openDoor()
 # =============================================================================
     
 # =============================================================================
-#     startNewGame()
+    startNewGame()
 # =============================================================================
 # =============================================================================
 #     reportMousePosition()
@@ -47,19 +47,27 @@ def reportMousePosition(seconds=10):
         
 def startNewGame():
     # Click on new game
-    pyautogui.click(702, 1323, duration=0.1)
-    # to get into char selection screen
-    pyautogui.click(702, 1323, duration=0.2) 
-    # click on too easy
-    sleep(0.8)
-    pyautogui.click(166, 417) 
-    # start game
-    pyautogui.click(2440, 1526, duration=0.3)
-    sleep(0.5)
-    # Skip cutscene
-    pyautogui.click(2440, 1526, duration=0.5)
-    sleep(5.5)
+    pyautogui.click(400, 885, duration=0.1)
+    pyautogui.click(400, 885, duration=0.2)
+
+    # Click on "Too Easy"
+    sleep(2)
+    pyautogui.click(130, 405)
+
+    # Click Sara
+    sleep(2)
+    pyautogui.click(x=645, y=820)
+
+    sleep(2)
+    pyautogui.click(1770, 1010, duration=0.3)
+
+    sleep(2)
+    # Skip cutscene (same button)
+    pyautogui.click(1770, 1010, duration=0.3)
+
+    sleep(8)
     playGame()
+
     
 def playGame():    
     # Open first door
@@ -71,6 +79,7 @@ def playGame():
             count=count+1
             if count==3:
                 resetGame()
+                return
         else:
             count=0
         sleep(6)
@@ -80,24 +89,20 @@ def playGame():
         sleep(0.2)
         pyautogui.press('1')
         # heal if possible
-        pyautogui.click(2353, 65, duration=0.1)
+        pyautogui.click(1708, 68, duration=0.1)
         sleep(0.5)
-        
-                
+
     return None
     
 def openDoor():    
     images_to_check = [
-            'door_001.png',
-            'door_002.png',
-            'door_003.png',
-            'door_004.png',
-            'door_005.png',
-            'door_006.png',
-            'door_007.png',
-            'door_008.png',
-            'door_009.png',
-            'door_010.png'
+            'door_1080p_001.png',
+            'door_1080p_002.png',
+            'door_1080p_003.png',
+            'door_1080p_004.png',
+            'door_1080p_005.png',
+            'door_1080p_006.png',
+            'door_1080p_007.png',
         ]
     
     # loop over images until one is found, then return the index of the found
@@ -110,7 +115,9 @@ def openDoor():
             image_filename)
         try:
             image_pos = pyautogui.locateOnScreen(Door_path, confidence=0.9)
-        except: print("Door {} not found".format(index+1))
+        except Exception as e:
+            print(f"Error locating door {index+1}: {e}")
+            continue
         else:
             if image_pos:
                 print("Door {} found".format(index+1))
@@ -134,10 +141,8 @@ def checkGameOver():
     else:
         if image_pos:
             print("Game over")
-            sleep(0.5)
-            pyautogui.click(x=2111, y=1534)  # right-click the mouse
             sleep(2)
-            pyautogui.click(x=2404, y=1567)  # right-click the mouse
+            pyautogui.click(x=1550, y=1026) 
             sleep(4)
             startNewGame()
             return None
@@ -158,7 +163,19 @@ def checkMainMenu():
             sleep(0.5)
             sleep(2)
             startNewGame()
-            return None        
+            return None  
+
+def resetGame():
+    print("Resetting game")
+    pyautogui.press('esc')
+    sleep(0.3)
+    # Abandon
+    pyautogui.click(x=940, y=690) 
+    sleep(0.3)
+    # Confirm
+    pyautogui.click(x=1100, y=633)
+    sleep(1)
+    startNewGame()
 
 if __name__ == "__main__":
     main()
