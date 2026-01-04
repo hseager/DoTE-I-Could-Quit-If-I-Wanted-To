@@ -66,7 +66,7 @@ def startNewGame():
     # Skip cutscene (same button)
     pyautogui.click(1770, 1010, duration=0.3)
 
-    sleep(10)
+    sleep(14)
     playGame()
 
     
@@ -83,15 +83,15 @@ def playGame():
                 return
         else:
             count=0
-        sleep(6)
+        sleep(7)
         checkGameOver()
         checkMainMenu()
         pyautogui.press('1')
-        sleep(0.2)
+        sleep(1)
         pyautogui.press('1')
         # heal if possible
         pyautogui.click(1708, 68, duration=0.1)
-        sleep(0.5)
+        sleep(1)
 
     return None
     
@@ -161,8 +161,7 @@ def checkMainMenu():
     else:
         if image_pos:
             print("Reached main menu")
-            sleep(0.5)
-            sleep(2)
+            sleep(3)
             startNewGame()
             return None  
 
