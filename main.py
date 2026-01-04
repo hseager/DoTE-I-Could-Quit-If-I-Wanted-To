@@ -47,25 +47,26 @@ def reportMousePosition(seconds=10):
         
 def startNewGame():
     # Click on new game
+    sleep(3)
     pyautogui.click(400, 885, duration=0.1)
     pyautogui.click(400, 885, duration=0.2)
 
     # Click on "Too Easy"
-    sleep(2)
+    sleep(4)
     pyautogui.click(130, 405)
 
     # Click Sara
-    sleep(2)
+    sleep(4)
     pyautogui.click(x=645, y=820)
 
-    sleep(2)
+    sleep(4)
     pyautogui.click(1770, 1010, duration=0.3)
 
-    sleep(2)
+    sleep(4)
     # Skip cutscene (same button)
     pyautogui.click(1770, 1010, duration=0.3)
 
-    sleep(8)
+    sleep(10)
     playGame()
 
     
@@ -141,7 +142,7 @@ def checkGameOver():
     else:
         if image_pos:
             print("Game over")
-            sleep(2)
+            sleep(4)
             pyautogui.click(x=1550, y=1026) 
             sleep(4)
             startNewGame()
@@ -168,13 +169,13 @@ def checkMainMenu():
 def resetGame():
     print("Resetting game")
     pyautogui.press('esc')
-    sleep(0.3)
+    sleep(3)
     # Abandon
     pyautogui.click(x=940, y=690) 
-    sleep(0.3)
+    sleep(3)
     # Confirm
     pyautogui.click(x=1100, y=633)
-    sleep(1)
+    sleep(2)
     startNewGame()
 
 if __name__ == "__main__":
