@@ -52,17 +52,17 @@ def startNewGame():
     pyautogui.click(400, 885, duration=0.2)
 
     # Click on "Too Easy"
-    sleep(4)
+    sleep(3)
     pyautogui.click(130, 405)
 
     # Click Sara
-    sleep(4)
+    sleep(2)
     pyautogui.click(x=645, y=820)
 
-    sleep(4)
+    sleep(2)
     pyautogui.click(1770, 1010, duration=0.3)
 
-    sleep(4)
+    sleep(2)
     # Skip cutscene (same button)
     pyautogui.click(1770, 1010, duration=0.3)
 
@@ -112,7 +112,7 @@ def openDoor():
         script_dir = os.path.dirname(__file__)
         Door_path = os.path.join(
             script_dir, 
-            'images', 
+            'images',
             image_filename)
         try:
             image_pos = pyautogui.locateOnScreen(Door_path, confidence=0.9)
@@ -132,7 +132,7 @@ def openDoor():
 def checkGameOver():
     script_dir = os.path.dirname(__file__)
     Door_path = os.path.join(
-        script_dir, 
+        script_dir,
         'images', 
         'game_over.png'
     )
@@ -142,9 +142,9 @@ def checkGameOver():
     else:
         if image_pos:
             print("Game over")
-            sleep(4)
+            sleep(2)
             pyautogui.click(x=1550, y=1026) 
-            sleep(4)
+            sleep(2)
             startNewGame()
             return None
         
@@ -152,7 +152,7 @@ def checkMainMenu():
     script_dir = os.path.dirname(__file__)
     Door_path = os.path.join(
         script_dir, 
-        'images', 
+        'images',
         'main_menu.png'
     )
     try:
@@ -169,10 +169,10 @@ def checkMainMenu():
 def resetGame():
     print("Resetting game")
     pyautogui.press('esc')
-    sleep(3)
+    sleep(2)
     # Abandon
     pyautogui.click(x=940, y=690) 
-    sleep(3)
+    sleep(2)
     # Confirm
     pyautogui.click(x=1100, y=633)
     sleep(2)
