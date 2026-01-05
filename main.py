@@ -134,7 +134,7 @@ def checkGameOver():
     Door_path = os.path.join(
         script_dir,
         'images', 
-        'game_over.png'
+        'game_over_1080p.png'
     )
     try:
         image_pos = pyautogui.locateOnScreen(Door_path, confidence=0.8)
@@ -153,7 +153,7 @@ def checkMainMenu():
     Door_path = os.path.join(
         script_dir, 
         'images',
-        'main_menu.png'
+        'main_menu_1080p.png'
     )
     try:
         image_pos = pyautogui.locateOnScreen(Door_path, confidence=0.8)
