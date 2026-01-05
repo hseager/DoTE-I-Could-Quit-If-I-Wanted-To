@@ -52,21 +52,21 @@ def startNewGame():
     pyautogui.click(400, 885, duration=0.2)
 
     # Click on "Too Easy"
-    sleep(3)
+    sleep(2)
     pyautogui.click(130, 405)
 
     # Click Sara
-    sleep(2)
+    sleep(1)
     pyautogui.click(x=645, y=820)
 
-    sleep(2)
+    sleep(1)
     pyautogui.click(1770, 1010, duration=0.3)
 
-    sleep(2)
+    sleep(1.5)
     # Skip cutscene (same button)
     pyautogui.click(1770, 1010, duration=0.3)
 
-    sleep(14)
+    sleep(11)
     playGame()
 
     
@@ -83,7 +83,7 @@ def playGame():
                 return
         else:
             count=0
-        sleep(7)
+        sleep(6)
         checkGameOver()
         checkMainMenu()
         pyautogui.press('1')
@@ -168,13 +168,13 @@ def checkMainMenu():
 def resetGame():
     print("Resetting game")
     pyautogui.press('esc')
-    sleep(2)
+    sleep(1)
     # Abandon
     pyautogui.click(x=940, y=690) 
-    sleep(2)
+    sleep(1)
     # Confirm
     pyautogui.click(x=1100, y=633)
-    sleep(2)
+    sleep(1)
     startNewGame()
 
 if __name__ == "__main__":
