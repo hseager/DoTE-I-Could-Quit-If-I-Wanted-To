@@ -84,8 +84,10 @@ def playGame():
         else:
             count=0
         sleep(6)
-        checkGameOver()
-        checkMainMenu()
+        if checkGameOver():
+            return
+        if checkMainMenu():
+            return
         pyautogui.press('1')
         sleep(1)
         pyautogui.press('1')
@@ -138,7 +140,9 @@ def checkGameOver():
     )
     try:
         image_pos = pyautogui.locateOnScreen(Door_path, confidence=0.8)
-    except: print("Game not over")
+    except: 
+        print("Game not over")
+        return False
     else:
         if image_pos:
             print("Game over")
@@ -146,7 +150,8 @@ def checkGameOver():
             pyautogui.click(x=1550, y=1026) 
             sleep(2)
             startNewGame()
-            return None
+            return True
+        return False
         
 def checkMainMenu():
     script_dir = os.path.dirname(__file__)
@@ -157,13 +162,16 @@ def checkMainMenu():
     )
     try:
         image_pos = pyautogui.locateOnScreen(Door_path, confidence=0.8)
-    except: print("Not at main menu")
+    except: 
+        print("Not at main menu")
+        return False
     else:
         if image_pos:
             print("Reached main menu")
             sleep(3)
             startNewGame()
-            return None  
+            return True
+        return False  
 
 def resetGame():
     print("Resetting game")
