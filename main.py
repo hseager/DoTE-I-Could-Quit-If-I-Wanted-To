@@ -149,6 +149,20 @@ def checkGameOver():
             sleep(2)
             pyautogui.click(x=1550, y=1026) 
             sleep(2)
+
+            Close_button_path = os.path.join(
+                script_dir,
+                'images', 
+                'close_button_1080p.png'
+            )
+            try:
+                close_pos = pyautogui.locateOnScreen(Close_button_path, confidence=0.8)
+                if close_pos:
+                    pyautogui.click(x=1764, y=1014)
+                    sleep(2)
+            except Exception as e:
+                print(f"Close button not found")
+
             startNewGame()
             return True
         return False
