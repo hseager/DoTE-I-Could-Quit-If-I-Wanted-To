@@ -46,6 +46,7 @@ def reportMousePosition(seconds=10):
         sleep(1)
         
 def startNewGame():
+    print("Starting new game")
     # Click on new game
     sleep(3)
     pyautogui.click(400, 885, duration=0.1)
@@ -133,13 +134,13 @@ def openDoor():
     
 def checkGameOver():
     script_dir = os.path.dirname(__file__)
-    Door_path = os.path.join(
+    Game_over_path = os.path.join(
         script_dir,
         'images', 
         'game_over_1080p.png'
     )
     try:
-        image_pos = pyautogui.locateOnScreen(Door_path, confidence=0.8)
+        image_pos = pyautogui.locateOnScreen(Game_over_path, confidence=0.8)
     except: 
         print("Game not over")
         return False
@@ -158,12 +159,18 @@ def checkGameOver():
             try:
                 close_pos = pyautogui.locateOnScreen(Close_button_path, confidence=0.8)
                 if close_pos:
+                    print("Close button found, clicking it")
                     pyautogui.click(x=1764, y=1014)
                     sleep(2)
             except Exception as e:
                 print(f"Close button not found")
 
-            startNewGame()
+            if checkMainMenu():
+                startNewGame()
+            else :
+                print("Not at main menu after game over")
+                quit()
+
             return True
         return False
         
